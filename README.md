@@ -17,6 +17,7 @@ agente-preditivo-especialista/
 ├── Gaming_Academic_Performance.csv  # dataset
 ├── mlp.py                           # treinamento e exportação do modelo
 ├── api.py                           # backend FastAPI + integração Gemini
+├── frontend.py                      # front end feito com streamlit
 ├── melhor_modelo_mlp.pkl            # modelo treinado (gerado pelo mlp.py)
 ├── scaler.pkl                       # normalizador (gerado pelo mlp.py)
 ├── .env                             # chave da API (não versionado)
@@ -43,7 +44,7 @@ cd agente-preditivo-especialista
 
 **2. Instale as dependências:**
 ```bash
-pip install pandas scikit-learn matplotlib joblib fastapi uvicorn google-genai python-dotenv
+pip install pandas scikit-learn matplotlib joblib fastapi uvicorn google-genai python-dotenv streamlit
 ```
 
 **3. Configure a chave da API:**
@@ -112,6 +113,7 @@ Campos aceitos:
 
 - **Machine Learning:** Python, Scikit-learn (MLPClassifier), Pandas, Joblib
 - **Backend:** FastAPI, Uvicorn, Pydantic
+- **Frontend:** Streamlit
 - **IA Generativa:** Google Gemini 2.5 Flash (`google-genai`)
 - **Utilitários:** python-dotenv, Matplotlib
 
@@ -143,6 +145,12 @@ Campos aceitos:
 
 ### Guilherme Bottcher
 
-*(a preencher)*
-
+**Etapa C — Interface Web (Frontend)**
+- Desenvolveu a interface do usuário utilizando **Streamlit**, permitindo que qualquer pessoa interaja com o sistema sem necessidade de conhecimento técnico.
+- Implementou o formulário de entrada com todos os campos do modelo, organizado em duas colunas para melhor aproveitamento do espaço: variáveis numéricas (`gaming_hours`, `study_hours`, `sleep_hours`, `attendance`, `social_activity`, `device_usage`, `reaction_time_ms`, `addiction_score`) e variáveis categóricas (`gender`, `gaming_genre`, `stress_level`).
+- Utilizou componentes adequados para cada tipo de campo: `number_input` para valores numéricos, `selectbox` para categorias e `select_slider` para o nível de estresse, tornando a interface mais intuitiva.
+- Integrou o frontend ao backend via requisição HTTP `POST` para o endpoint `/predict` da API FastAPI, com tratamento de erros para falhas de conexão e timeout.
+- Exibiu o resultado bruto do modelo com indicadores visuais distintos: card verde para **Aprovado** e card vermelho para **Reprovado**, acompanhado da métrica de probabilidade de aprovação e uma barra de progresso proporcional.
+- Renderizou a explicação gerada pelo agente Gemini em formato Markdown diretamente na interface, preservando a formatação de títulos, listas e destaques retornados pela API.
+- Realizou testes de integração completos com a API, validando o fluxo de ponta a ponta entre o formulário, o modelo MLP e a explicação do Gemini.
 ---
