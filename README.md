@@ -70,7 +70,13 @@ uvicorn api:app --reload
 ```
 O servidor estará disponível em `http://127.0.0.1:8000`.
 
-**Passo 3 — Testar a API:**
+**Passo 3 — Subir o frontend (em outro terminal):**
+```bash
+streamlit run frontend.py
+```
+A interface estará disponível em `http://localhost:8501`.
+
+**Passo 4 — Testar a API:**
 
 Acesse `http://127.0.0.1:8000/docs` no navegador para abrir a interface interativa (Swagger UI).
 
